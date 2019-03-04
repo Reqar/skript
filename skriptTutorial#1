@@ -1,0 +1,14 @@
+command /youtube:
+	trigger:
+		open virtual chest inventory with size 3 named "&c&lShop" to player
+		make gui slot 10 of player with grass named "&c&lBlocks" to run:
+			open virtual chest inventory with size 6 named "&c&lBlocks" to player
+			make gui slot 0 of player with grass named "&7Grass" with lore "&78 For $100" to run:
+				if player's balance >= 100:
+					give player 8 grass
+					remove 100 from player's balance
+					send "&aYou bought 8 Grass for $100"
+				else:
+					send "&cYou do not have enough money"
+		make gui slot 11 of player with diamond pickaxe named "&c&lTools" to run:
+			open virtual chest inventory with size 6 named "&c&lTools" to player
