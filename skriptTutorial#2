@@ -1,0 +1,28 @@
+options:
+	p: &8[&cYou&fTube&8]
+
+variables:
+	{youtube::%player%} = 0
+
+command /youtubecoins [<player>]:
+	trigger:
+		if arg-1 is not set:
+			send "{@p} &7Your current Youtubecoins is &e%{youtube::%player%}%"
+
+command /setcoins [<player>] [<text>]:
+	trigger:
+		if player has permission "sk.setcoins":
+			if arg-2 is set:
+				set {youtube::%arg-1%} to arg-2
+				send "{@p} &7You set %arg-1%'s coins to &e%arg-2%"
+			else:
+				send "{@p} &7/setcoins [player] [text]"
+
+command /youtubebuy:
+	trigger:
+		if {youtube::%player%} >= 100:
+			give player 1 diamond sword named "&c&lSword Of Justice"
+			remove 100 from {youtube::%player%}
+			send "{@p} &7Bought Justice sword for 125 Coins"
+		else:
+			send "{@p} &7Not enough Youtubecoins"
